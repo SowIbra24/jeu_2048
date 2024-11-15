@@ -85,4 +85,30 @@
            
     }
 
+    /**
+     * Charge la matrice globale $grille à partir du fichier "grille.txt".
+     *
+     * Lit une matrice 4x4 depuis `grille.txt`, où les lignes sont séparées par des
+     * sauts de ligne et les valeurs par des espaces, puis remplit $grille.
+     *
+     * @global array $grille La matrice 4x4 à remplir.
+     * @return void
+     */
+
+    function fichier_vers_matrice ()
+	{
+		global $grille;
+		$chaine = file_get_contents("grille.txt");
+		$chaine = str_replace("\n", " " , $chaine);
+		$valeur = explode(" " , $chaine);
+		$n=0;
+		for ($i = 0; $i < 4 ; $i++)
+		{
+			for ($j = 0; $j < 4; $j++) 
+			{
+				$grille[$i][$j] = (int) ($valeur[$n]);
+				$n++;
+			}
+		}		
+	}
 ?>
