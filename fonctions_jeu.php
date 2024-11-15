@@ -5,8 +5,9 @@
      *
      * @param int $score Le score à sauvegarder.
      */
-    function score_vers_fichier($score)
+    function score_vers_fichier()
     {
+        global $score;
         file_put_contents("score.txt", $score);
     }
 
@@ -41,10 +42,12 @@
      * Si la grille est pleine (aucune case vide), retourne null.
      *
      * @param array $grille La grille de jeu, représentée comme un tableau 2D de 4x4.
-     * @return array|null Les coordonnées [x, y] d'une case vide choisie aléatoirement, ou null si aucune case vide n'est disponible.
+     * @return array un tableau qui contient les coordonnées de la case vide de la grille passée en 
+     * paramètre
      */
-	function tirage_aleatoire($grille)
+	function tirage_aleatoire()
 	{
+        global $grille;
 		$table;
 		do{
 			$table[0] = rand(0,3);
@@ -54,4 +57,6 @@
 		  return $table;
 		
 	}
+
+
 ?>
