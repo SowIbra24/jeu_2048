@@ -57,6 +57,32 @@
 		  return $table;
 		
 	}
-
+    /**
+     * Sauvegarde la matrice globale $grille dans "grille.txt".
+     *
+     * Chaque ligne de la matrice 4x4 est écrite dans le fichier,
+     * avec les éléments séparés par des espaces. Le fichier est réinitialisé
+     * avant l'écriture.
+     *
+     * @global array $grille La matrice 4x4 à sauvegarder.
+     * @return void
+     */
+    function matrice_vers_fichier()
+    {
+        global $grille;
+        file_put_contents("grille.txt", "");
+        for ($i=0;$i<4;$i++)
+        {
+            for($j=0;$j<4;$j++)
+            {
+                file_put_contents("grille.txt",$grille[$i][$j], FILE_APPEND);
+                if ($j < 3)
+                    file_put_contents("grille.txt"," ", FILE_APPEND);
+                
+            }
+            file_put_contents("grille.txt","\n", FILE_APPEND);
+        }
+           
+    }
 
 ?>
