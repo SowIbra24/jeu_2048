@@ -1,0 +1,22 @@
+body
+{
+    background-color: antiquewhite;
+    margin-top: 2%;
+}
+.conteneur
+{
+    width: 80%;
+    margin: auto;
+    border: #0ee4ab 3px solid;
+}
+.accueil
+{
+	background-color: #D1FFF3;
+	border-radius: 15px;
+	padding : 10px;
+	text-align : center;
+	font-size: 1.15em;
+    line-height: 130%;
+    font-family: Ubuntu,"sans-serif";
+
+}
