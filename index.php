@@ -31,7 +31,35 @@
 			</div>
 
 		<div class="jeu">
-			
+			<div class="tableau">
+				<table>
+				 <tr>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+				 </tr>
+				 <tr>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+				 </tr>
+				 <tr>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+				 </tr>
+				 <tr>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+				 </tr>
+				</table>
+				
+			</div>
 			<div class="formulaire">
 				<form name="jeu2048" method="get" action="index.php">
 					<input id="nouvelle-partie" type="submit" name="action-joueur" value="Nouvelle partie"> <br>
