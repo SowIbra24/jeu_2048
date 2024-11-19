@@ -43,7 +43,7 @@ form
     flex-direction: column;
     gap: 10px;
 }
-.form
+.grille-action
 {
     width: 300px;
     height: 150px;
@@ -80,23 +80,4 @@ form
 {
     grid-row:  2 / 2;
     grid-column: 3 / 3;
-}
-
-table
-{
-	background-color:#060047;
-	text-align : center;
-}
-td
-{
-	width:130px;
-	height:130px;
-	border-radius : 15%;
-    background-color: grey;
-
-}
-tr
-{
-	font-weight : bold;
-	font-size:2.2em;
 }
