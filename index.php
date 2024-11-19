@@ -26,6 +26,24 @@
 		L'objectif est d'atteindre une case portant la valeur 2048 avant que la grille ne soit remplie et 
 		qu'aucun mouvement ne soit plus possible. Si aucun déplacement n’est possible, la partie est perdue.
 		</div>
+		<div class="score">
+				Score : <? echo $score ?>
+			</div>
+
+		<div class="jeu">
+			
+			<div class="formulaire">
+				<form name="jeu2048" method="get" action="index.php">
+					<input id="nouvelle-partie" type="submit" name="action-joueur" value="Nouvelle partie"> <br>
+					<div class="form">
+						<input id="haut" type="submit" name="action-joueur" value="&#x25B2;"> <br>
+						<input id="gauche" type="submit" name="action-joueur" value="&#x25C0;"> <br>
+						<input id="droite" type="submit" name="action-joueur" value="&#x25B6;"> <br>
+						<input id="bas" type="submit" name="action-joueur" value="&#x25BC;"> <br>
+					</div>	
+				</form>
+			</div>
+		</div>
 
 		
 	</div>
