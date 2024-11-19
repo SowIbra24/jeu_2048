@@ -20,3 +20,17 @@ body
     font-family: Ubuntu,"sans-serif";
 
 }
+
+.score
+{
+	font-weight:bold;
+	font-size:1.6em;
+}
+.jeu
+{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
