@@ -5,9 +5,8 @@
      *
      * @param int $score Le score à sauvegarder.
      */
-    function sauvegarde_score()
+    function sauvegarde_score($grille)
     {
-        global $score;
         file_put_contents("score.txt", $score);
     }
 
@@ -45,9 +44,8 @@
      * @return array un tableau qui contient les coordonnées de la case vide de la grille passée en 
      * paramètre
      */
-	function tirage_aleatoire()
+	function tirage_aleatoire($grille)
 	{
-        global $grille;
 		$table;
 		do{
 			$table[0] = rand(0,3);
@@ -64,12 +62,11 @@
      * avec les éléments séparés par des espaces. Le fichier est réinitialisé
      * avant l'écriture.
      *
-     * @global array $grille La matrice 4x4 à sauvegarder.
+     * @param array $grille La matrice 4x4 à sauvegarder.
      * @return void
      */
-    function sauvegarde_grille()
+    function sauvegarde_grille($grille)
     {
-        global $grille;
         file_put_contents("grille.txt", "");
         for ($i=0;$i<4;$i++)
         {
@@ -86,18 +83,17 @@
     }
 
     /**
-     * Charge la matrice globale $grille à partir du fichier "grille.txt".
+     * Charge la matrice $grille à partir du fichier "grille.txt".
      *
      * Lit une matrice 4x4 depuis `grille.txt`, où les lignes sont séparées par des
      * sauts de ligne et les valeurs par des espaces, puis remplit $grille.
      *
-     * @global array $grille La matrice 4x4 à remplir.
+     * @param array $grille La matrice 4x4 à remplir.
      * @return void
      */
 
-    function charge_grille ()
+    function charge_grille ($grille)
 	{
-		global $grille;
 		$chaine = file_get_contents("grille.txt");
 		$chaine = str_replace("\n", " " , $chaine);
 		$valeur = explode(" " , $chaine);
