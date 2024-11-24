@@ -15,7 +15,7 @@
      *
      * @return int Le score sauvegardé dans le fichier.
      */
-    function charge_score()
+    function charge_score(&$score)
     {
         return file_get_contents("score.txt");
     }
@@ -27,14 +27,13 @@
      */
     function genere_nombre()
     {
-        $chiffre = rand(0, 1); // Génère 0 ou 1 de façon aléatoire
+        $chiffre = rand(0, 1); 
 
         if ($chiffre == 0)
-            return 2;          // Retourne 2 si le chiffre est 0
+            return 2;         
         else
-            return 4;          // Retourne 4 si le chiffre est 1
+            return 4;         
     }
-
 
 	/**
      * Sélectionne une position aléatoire parmi les cases vides d'une grille 4x4.
@@ -44,17 +43,47 @@
      * @return array un tableau qui contient les coordonnées de la case vide de la grille passée en 
      * paramètre
      */
+
 	function tirage_aleatoire($grille)
-	{
-		$table;
-		do{
-			$table[0] = rand(0,3);
-			$table[1] = rand(0,3);
-		  } while($grille[$table[0]][$table[1]] != 0);
-		  
-		  return $table;
-		
-	}
+    {
+        // tableau de tableaux qui contiendra dans chaque ligne, un tableau qui contiendra les indices
+        // de la case vide de la grille 
+        $cases_vides = []; 
+
+        for ($i = 0; $i < 4; $i++) {
+            for ($j = 0; $j < 4; $j++) {
+                if ($grille[$i][$j] == 0) {
+                    $cases_vides[] = [$i, $j];
+                }
+            }
+        }
+
+        if (empty($cases_vides)) {
+            return false;
+        }
+
+        // retourne un indice d'une case de cases_vides qui stocke les coordonées d'une case vide de grille
+        return $cases_vides[array_rand($cases_vides)];
+    }
+
+    /**
+     * Ajoute un nombre aléatoire (2 ou 4) dans une case vide de la grille.
+     * La case est choisie au hasard parmi les cases vides.
+     * 
+     * @param array &$grille La grille de jeu, un tableau 2D de 4x4, où chaque case est un entier.
+     *                       La fonction modifie cette grille en y ajoutant un nombre aléatoire.
+     * @return void
+     */
+    function ajoute_nombre(&$grille)
+    { 
+        $indice = tirage_aleatoire($grille); 
+        $ligne = $indice[0];
+        $colonne = $indice[1];
+        $grille[$ligne][$colonne] = genere_nombre();
+    }
+
+
+
     /**
      * Sauvegarde la matrice globale $grille dans "grille.txt".
      *
@@ -88,11 +117,11 @@
      * Lit une matrice 4x4 depuis `grille.txt`, où les lignes sont séparées par des
      * sauts de ligne et les valeurs par des espaces, puis remplit $grille.
      *
-     * @param array $grille La matrice 4x4 à remplir.
+     * @param array &$grille La matrice 4x4 à remplir.
      * @return void
      */
 
-    function charge_grille ($grille)
+    function charge_grille (&$grille)
 	{
 		$chaine = file_get_contents("grille.txt");
 		$chaine = str_replace("\n", " " , $chaine);
@@ -107,4 +136,34 @@
 			}
 		}		
 	}
+
+    /**
+     * La fonction réinitialise le score à 0, remplit la grille avec des 0,
+     * et place deux cases avec la valeur 2 dans des positions aléatoires vides.
+     * Les modifications sont sauvegardées dans les fichiers "score.txt" et "grille.txt".
+     * 
+     * @param array $grille La grille de jeu, un tableau 2D de 4x4 où chaque case représente une 
+     *  position dans le jeu. La grille est réinitialisée à 0 avant de placer les cases 2.
+     * @param int $score Le score du joueur. Il est réinitialisé à 0 au début de la partie.
+     * @return void
+     */
+
+    function nouvelle_partie(&$grille, &$score)
+    {
+        $score = 0;
+        sauvegarde_score($score); 
+        
+        $grille = array_fill(0,4,array_fill(0,4,0));
+
+        for ($i = 0; $i < 2; $i++) {
+            do {
+                $ligne = rand(0, 3);
+                $colonne = rand(0, 3);
+            } while ($grille[$ligne][$colonne] != 0); 
+            
+            $grille[$ligne][$colonne] = 2;
+        }
+        sauvegarde_grille($grille);
+    }
+
 ?>
