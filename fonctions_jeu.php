@@ -5,7 +5,7 @@
      *
      * @param int $score Le score à sauvegarder.
      */
-    function score_vers_fichier()
+    function sauvegarde_score()
     {
         global $score;
         file_put_contents("score.txt", $score);
@@ -16,7 +16,7 @@
      *
      * @return int Le score sauvegardé dans le fichier.
      */
-    function fichier_vers_score()
+    function charge_score()
     {
         return file_get_contents("score.txt");
     }
@@ -67,7 +67,7 @@
      * @global array $grille La matrice 4x4 à sauvegarder.
      * @return void
      */
-    function matrice_vers_fichier()
+    function sauvegarde_grille()
     {
         global $grille;
         file_put_contents("grille.txt", "");
@@ -95,7 +95,7 @@
      * @return void
      */
 
-    function fichier_vers_matrice ()
+    function charge_grille ()
 	{
 		global $grille;
 		$chaine = file_get_contents("grille.txt");
