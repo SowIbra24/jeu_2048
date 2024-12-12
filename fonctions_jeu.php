@@ -5,7 +5,7 @@
      *
      * @param int $score Le score à sauvegarder.
      */
-    function sauvegarde_score($grille)
+    function sauvegarde_score($score)
     {
         file_put_contents("score.txt", $score);
     }
@@ -46,8 +46,6 @@
 
 	function tirage_aleatoire($grille)
     {
-        // tableau de tableaux qui contiendra dans chaque ligne, un tableau qui contiendra les indices
-        // de la case vide de la grille 
         $cases_vides = []; 
 
         for ($i = 0; $i < 4; $i++) {
@@ -62,7 +60,6 @@
             return false;
         }
 
-        // retourne un indice d'une case de cases_vides qui stocke les coordonées d'une case vide de grille
         return $cases_vides[array_rand($cases_vides)];
     }
 
@@ -81,8 +78,6 @@
         $colonne = $indice[1];
         $grille[$ligne][$colonne] = genere_nombre();
     }
-
-
 
     /**
      * Sauvegarde la matrice globale $grille dans "grille.txt".
@@ -164,6 +159,67 @@
             $grille[$ligne][$colonne] = 2;
         }
         sauvegarde_grille($grille);
+    }
+
+    /**
+     * @brief Génère une classe CSS en fonction de la valeur d'une case.
+     *
+     * Cette fonction retourne une chaîne de caractères correspondant
+     * à une classe CSS. Si la valeur est 0, elle retourne "c0" pour
+     * indiquer une case vide. Sinon, elle retourne une classe comme
+     * "c2", "c4", etc., en fonction de la valeur.
+     *
+     * @param int $valeur La valeur numérique de la case (0, 2, 4, 8, ...).
+     * @return string La classe CSS associée à la valeur de la case.
+     */
+    function obtenir_classe_css($valeur) 
+    {
+        return $valeur == 0 ? "c0" : "c" . $valeur;
+    }
+
+    /**
+     * @brief Affiche une cellule de la grille avec le style correspondant à sa valeur.
+     *
+     * Cette fonction utilise la valeur d'une cellule de la grille pour déterminer 
+     * la classe CSS à appliquer (via la fonction `obtenir_classe_css`), puis affiche 
+     * une cellule HTML avec cette classe. Si la valeur de la cellule est 0, la cellule
+     * reste vide.
+     *
+     * @param array $grille La grille de jeu qui est deja initialisée
+     * @param int $ligne L'indice de la ligne de la cellule dans la grille.
+     * @param int $colonne L'indice de la colonne de la cellule dans la grille.
+     * @return void
+     */
+    function afficher_cellule($grille, $ligne, $colonne) 
+    {
+        $classe_css = obtenir_classe_css($grille[$ligne][$colonne]);
+        echo "<td class='$classe_css'>";
+        echo $grille[$ligne][$colonne] == 0 ? "" : $grille[$ligne][$colonne];
+        echo "</td>";
+    }
+
+    /**
+     * @brief Affiche la grille complète sous forme de tableau HTML.
+     *
+     * Cette fonction parcourt toutes les lignes et colonnes de la grille , 
+     * et utilise `afficher_cellule` pour afficher chaque case dans une table HTML.
+     * 
+     * @param array $grille La grille de jeu à afficher 
+     * @return void
+     */
+    function afficher_grille ($grille)
+    {
+        echo "<table> ";
+        for($i=0;$i<4;$i++)
+        {
+            echo "<tr>";
+            for($j=0;$j<4;$j++)
+            {
+                afficher_cellule($grille,$i,$j);
+            }
+            echo "</tr>";
+        }
+        echo " </table>";
     }
 
 ?>
