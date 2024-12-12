@@ -2,6 +2,7 @@
 	require_once"fonctions_jeu.php";
 	$score = 0;
 	$grille = [];
+	nouvelle_partie($grille,$score);	
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -32,33 +33,10 @@
 
 		<div class="jeu">
 			<div class="tableau">
-				<table>
-				 <tr>
-					<td>0</td>
-					<td>0</td>
-					<td>0</td>
-					<td>0</td>
-				 </tr>
-				 <tr>
-					<td>0</td>
-					<td>0</td>
-					<td>0</td>
-					<td>0</td>
-				 </tr>
-				 <tr>
-					<td>0</td>
-					<td>0</td>
-					<td>0</td>
-					<td>0</td>
-				 </tr>
-				 <tr>
-					<td>0</td>
-					<td>0</td>
-					<td>0</td>
-					<td>0</td>
-				 </tr>
-				</table>
-				
+				<?php
+				   afficher_grille($grille);
+				?>
+							
 			</div>
 			<div class="formulaire">
 				<form name="jeu2048" method="get" action="index.php">
