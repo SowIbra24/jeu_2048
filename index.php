@@ -1,8 +1,35 @@
 <?php
-	require_once"fonctions_jeu.php";
+	require_once("logique_jeu.php");
 	$score = 0;
 	$grille = [];
-	nouvelle_partie($grille,$score);	
+	charge_score($score);
+	charge_grille($grille);
+	if(isset($_GET['action-joueur']))
+	{
+		$action = $_GET['action-joueur'];
+		switch($action){
+			case "Nouvelle partie": 
+				nouvelle_partie($grille,$score);
+				break;
+			case "◀" :
+				for ($i = 0; $i < 4; $i++) {
+					decale_ligne($grille,$i,"gauche");	
+				}
+				break;
+			case "▶" :
+				for ($i = 0; $i < 4; $i++) {
+					decale_ligne($grille,$i,"droite");	
+				}
+				break;
+			case "▲":
+				break;
+			case "▼" :
+				break;
+			default :
+				break;
+		} 
+		
+	}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
